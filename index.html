@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/animate.css">
+    <title>CBD</title>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header__burg">
+            <div class="header__burg-img"></div>
+        </div>
+        <nav class="header__menu menu">
+            <a href="#intro" class="menu__item"><span>Home</span></a>
+            <a href="#shop" class="menu__item"><span>Products</span></a>
+            <a href="#faq" class="menu__item"><span>FAQs</span></a>
+            <a href="#contacts" class="menu__item"><span>Contact Us</span></a>
+        </nav>
+        <div class="header__logo">CBD</div>
+        <div id="cart" class="header__tools tools">
+            <div class="tools__item"><span>Login</span></div>
+            <form class="tools__login" action="#!" method="post">
+                <fieldset>
+                    <input type="text" name="user_name" placeholder="Login">
+                    <input type="password" name="user_password" placeholder="Password">
+                </fieldset>
+                <button type="submit">
+                    <svg role="img">
+                        <use xlink:href="./img/svg/sprite.svg#arr-right-footer"></use>
+                    </svg>
+                </button>
+            </form>
+            <div class="tools__item"><span>Search</span></div>
+            <form class="tools__search" action="https://www.google.com/search" method="get" target="blank">
+                <input type="search" name="q" placeholder="Search">
+                <button type="submit">
+                    <svg role="img">
+                        <use xlink:href="./img/svg/sprite.svg#arr-right-footer"></use>
+                    </svg>
+                </button>
+            </form>
+            <div class="tools__item"><span>Cart<span :class="{full: cart_qty > 0}">({{ cart_qty }})</span></span></div>
+            <form class="tools__cart cart" action="#!" method="get">
+                <div class="cart__item item" v-show="cart_qty === 0">
+                    <span class="item__name">Your cart is empty</span>
+                </div>
+                <div class="cart__item item" v-for="product in products" :key="product.id">
+                    <label class="item__name" :for="product.id"><span>{{product.name}}</span></label>
+                    <div class="item__qty">
+                        <div class="item__arrow minus" :class="{delete: !product.qty}" @click="minusQty(product.id)">
+                        </div>
+                        <input :id="product.id" type="number" min="0" :name="product.id" v-model.number="product.qty">
+                        <div class="item__arrow plus" @click="plusQty(product.id)">
+                        </div>
+                    </div>
+                    <div class="item__price"><span>{{product.price}} USD</span></div>
+                </div>
+                <div class="cart__total-cost">Total: {{cart_cost}} USD</div>
+                <button class="cart__btn" v-show="cart_qty !== 0" type="submit">Confirm order</button>
+            </form>
+        </div>
+        <div class="header__shadow"><img src="./img/bckgrnd/bckgrnd-header.png" alt=""></div>
+    </header>
+
+    <main class="main">
+
+        <section id="intro" class="intro">
+            <div class="container container_intro">
+                <h2 class="intro__title">Enhancing Life<br>Excelling in Care</h2>
+                <div class="intro__subtitle">Choose Wisely. Choose CBD.</div>
+                <a href="#!" class="intro__btn"><span>Start Shopping</span></a>
+                <a href="#shop" class="intro__goto-products"><span>See all products</span></a>
+                <a href="#about" class="intro__goto-next animate__animated">
+                    <svg role="img">
+                        <use xlink:href="./img/svg/sprite.svg#angle-down"></use>
+                    </svg>
+                </a>
+            </div>
+            <aside class="intro__panel"><span>CBD Potion health</span></aside>
+        </section>
+
+        <section id="about" class="about">
+            <div class="container">
+                <div class="about__medals medals">
+                    <h3 class="medals__title">We are what we are</h3>
+                    <img class="medals__row" src="./img/cntnt/abt-medals.png" alt="quality medals">
+                    <img class="medals__frame" src="./img/cntnt/abt-frame.png" alt="medals frame">
+                </div>
+                <div class="about__chapters">
+                    <div class="about__chapter chapter">
+                        <div class="chapter__tab active"><span>WHAT IS CBD?</span></div>
+                        <div class="chapter__body on-display">
+                            <div class="chapter__text">
+                                <h3 class="chapter__title">WHAT IT IS AND HOW IT WORKS</h3>
+                                <p>CBD is short for cannabidiol. It is a phytocannabinoid found in hemp and known for
+                                    supporting the body and mind in many ways.* Charlotte’s Web products have
+                                    cannabinoids
+                                    with CBD extract.</p>
+                                <p> Not to be confused with oil from hemp seeds (which doesn’t contain cannabinoids),
+                                    CBD
+                                    comes from the flowers and leaves of the hemp plant.</p>
+                                <p> Why does CBD work? The human body has a vast network of receptors, the
+                                    endocannabinoid
+                                    system.</p>
+                            </div>
+                            <div class="chapter__imgs">
+                                <img src="./img/cntnt/abt-01-mountain.jpg" alt="mountain">
+                                <img src="./img/cntnt/abt-02-wheat.jpg" alt="wheat">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about__chapter chapter">
+                        <div class="chapter__tab"><span>BENEFITS</span></div>
+                        <div class="chapter__body">
+                            <div class="chapter__text">
+                                <h3 class="chapter__title">WHAT ARE YOUR BENEFITS</h3>
+                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloribus excepturi
+                                    laudantium
+                                    dolore totam, similique omnis!</p>
+                                <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam sit nobis
+                                    adipisci
+                                    animi beatae saepe, laudantium expedita, tenetur possimus voluptates vel? Fugiat
+                                    fuga
+                                    maxime quaerat dolor incidunt error, dolorum enim.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about__chapter chapter">
+                        <div class="chapter__tab"><span>OUR DIFFERENCE</span></div>
+                        <div class="chapter__body">
+                            <div class="chapter__text">
+                                <h3 class="chapter__title">WHAT DIFFERS US FROM OTHERS</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores itaque vitae, sed
+                                    cupiditate repudiandae quas voluptates animi pariatur veniam iste sapiente
+                                    necessitatibus autem natus possimus blanditiis suscipit impedit quod nostrum,
+                                    facilis
+                                    obcaecati ab aut deleniti odio ex! Ad dolores incidunt, maxime numquam inventore
+                                    laborum
+                                    molestias?</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="shop" class="products">
+            <h3 class="products__title title">CBD Featured Products</h3>
+            <div class="products__slider slider-shop">
+                <div v-for="product in products" class="slider-shop__item item">
+                    <div class="item__about">
+                        <div class="item__rating rating">
+                            <input :id="bindStar(product.id, 05)" type="radio" class="rating__input" :name="product.id"
+                                value="5" checked>
+                            <label :for="bindStar(product.id, 05)" class="rating__label"></label>
+                            <input :id="bindStar(product.id, 04)" type="radio" class="rating__input" :name="product.id"
+                                value="4">
+                            <label :for="bindStar(product.id, 04)" class="rating__label"></label>
+                            <input :id="bindStar(product.id, 03)" type="radio" class="rating__input" :name="product.id"
+                                value="3">
+                            <label :for="bindStar(product.id, 03)" class="rating__label"></label>
+                            <input :id="bindStar(product.id, 02)" type="radio" class="rating__input" :name="product.id"
+                                value="2">
+                            <label :for="bindStar(product.id, 02)" class="rating__label"></label>
+                            <input :id="bindStar(product.id, 01)" type="radio" class="rating__input" :name="product.id"
+                                value="1">
+                            <label :for="bindStar(product.id, 01)" class="rating__label"></label>
+                        </div>
+                        <h4 class="item__title">{{product.name}}</h4>
+                        <div class="item__pic"><img :src="product.pic" alt="product-pic"></div>
+                    </div>
+                    <div class="item__buy">
+                        <div class="item__price">{{product.price}} USD</div>
+                        <div class="item__cart" @click="addToCart(product.id)">
+                            <span>Shop</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="faq">
+            <div class="container">
+                <h3 class="faq__title title">Frequently asked questions</h3>
+                <div class="faq__block block">
+                    <div class="block__item">
+                        <h4 class="block__title">
+                            <span>What is Cannabidiol (CBD)?</span>
+                            <span class="block__button">
+                                <svg role="img">
+                                    <use xlink:href="./img/svg/sprite.svg#cross"></use>
+                                </svg>
+                            </span>
+                        </h4>
+                        <p class="block__text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. At veniam
+                            molestiae
+                            aperiam? In, quia itaque aliquam iure libero error voluptas tempora ab magnam quas corrupti!
+                        </p>
+                    </div>
+                    <div class="block__item">
+                        <h4 class="block__title">
+                            <span>Is Hemp-Derived Cannabidiol (CBD) Legal?</span>
+                            <span class="block__button">
+                                <svg role="img">
+                                    <use xlink:href="./img/svg/sprite.svg#cross"></use>
+                                </svg>
+                            </span>
+                        </h4>
+                        <p class="block__text">
+                            Because CBD from hemp has no psychoactive effects, the purchase, sales, or possession of
+                            hemp
+                            CBD products are completely legal in all 50 States.</p>
+                    </div>
+                    <div class="block__item">
+                        <h4 class="block__title">
+                            <span>Are there any negative side effects?</span>
+                            <span class="block__button">
+                                <svg role="img">
+                                    <use xlink:href="./img/svg/sprite.svg#cross"></use>
+                                </svg>
+                            </span>
+                        </h4>
+                        <p class="block__text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis, fugiat
+                            libero id ex asperiores deleniti!</p>
+                    </div>
+                    <div class="block__item">
+                        <h4 class="block__title">
+                            <span>Do you offer a return policy?</span>
+                            <span class="block__button">
+                                <svg role="img">
+                                    <use xlink:href="./img/svg/sprite.svg#cross"></use>
+                                </svg>
+                            </span>
+                        </h4>
+                        <p class="block__text">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="testimonials">
+            <div class="container">
+                <h3 class="testimonials__title title" style="display:none">Testimonials</h3>
+                <div class="testimonials__slider slider-review">
+                    <div class="slider-review__item item">
+                        <div class="item__stars">
+                            <svg role="img">
+                                <use x="00%" width="16%" height="100%" xlink:href="./img/svg/sprite.svg#star"></use>
+                                <use x="20%" width="16%" height="100%" xlink:href="./img/svg/sprite.svg#star"></use>
+                                <use x="40%" width="16%" height="100%" xlink:href="./img/svg/sprite.svg#star"></use>
+                                <use x="60%" width="16%" height="100%" xlink:href="./img/svg/sprite.svg#star"></use>
+                                <use x="80%" width="16%" height="100%" xlink:href="./img/svg/sprite.svg#star"></use>
+                            </svg>
+                        </div>
+                        <div class="item__text">I have tried another product after using this one successfully, and I am
+                            Back for good! The flavour, the lightness of the oil and the health benefits I have gotten
+                            with
+                            this oil are amazing!</div>
+                        <div class="item__author"><span>Mark J.</span></div>
+                    </div>
+                    <div class="slider-review__item item">
+                        <div class="item__stars">
+                            <svg role="img">
+                                <use x="00%" width="16%" height="100%" xlink:href="./img/svg/sprite.svg#star"></use>
+                                <use x="20%" width="16%" height="100%" xlink:href="./img/svg/sprite.svg#star"></use>
+                                <use x="40%" width="16%" height="100%" xlink:href="./img/svg/sprite.svg#star"></use>
+                                <use x="60%" width="16%" height="100%" xlink:href="./img/svg/sprite.svg#star"></use>
+                                <use x="80%" width="16%" height="100%" xlink:href="./img/svg/sprite.svg#star"></use>
+                            </svg>
+                        </div>
+                        <div class="item__text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Provident,
+                            quis
+                            quibusdam alias eligendi architecto voluptatibus rerum esse autem ab, tempora quod
+                            cupiditate ut
+                            maxime, assumenda at molestiae debitis odio dolorum placeat explicabo eveniet suscipit ad
+                            eos
+                            praesentium.</div>
+                        <div class="item__author"><span>Mary K.</span></div>
+                    </div>
+                    <div class="slider-review__item item">
+                        <div class="item__stars">
+                            <svg role="img">
+                                <use x="00%" width="16%" height="100%" xlink:href="./img/svg/sprite.svg#star"></use>
+                                <use x="20%" width="16%" height="100%" xlink:href="./img/svg/sprite.svg#star"></use>
+                                <use x="40%" width="16%" height="100%" xlink:href="./img/svg/sprite.svg#star"></use>
+                                <use x="60%" width="16%" height="100%" xlink:href="./img/svg/sprite.svg#star"></use>
+                                <use x="80%" width="16%" height="100%" xlink:href="./img/svg/sprite.svg#star"></use>
+                            </svg>
+                        </div>
+                        <div class="item__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut ullam nam
+                            nemo
+                            dolorum! Accusantium, provident. Sit, animi aliquid.</div>
+                        <div class="item__author"><span>Jessica P.</span></div>
+                    </div>
+                </div>
+            </div>
+            <aside class="testimonials__panel">CBD every day</aside>
+        </section>
+
+    </main>
+
+    <footer id="contacts" class="footer">
+        <div class="container">
+            <div class="footer__logo"><span>CBD</span></div>
+            <div class="footer__info info">
+                <div class="info__items">
+                    <a href="#!">Privacy Policy</a>
+                    <a href="#!">Terms of Use</a>
+                    <a href="#!">Return Policy</a>
+                </div>
+                <div class="info__social social">
+                    <a class="social__item animate__animated" href="#!"><svg role="img">
+                            <use xlink:href="./img/svg/sprite.svg#facebook"></use>
+                        </svg></a>
+                    <a class="social__item animate__animated" href="#!"><svg role="img">
+                            <use xlink:href="./img/svg/sprite.svg#twitter"></use>
+                        </svg></a>
+                    <a class="social__item animate__animated" href="#!"><svg role="img">
+                            <use xlink:href="./img/svg/sprite.svg#youtube"></use>
+                        </svg></a>
+                </div>
+                <div class="info__items">
+                    <a href="#!">SHIPPING INFO</a>
+                    <a href="#!">RETURNS / EXCHANGES</a>
+                    <a href="#!">CONTACT</a>
+                </div>
+            </div>
+            <form action="#!" method="get" class="footer__subscribe subscribe">
+                <h4 class="subscribe__title">Subscribe to Newsletter</h4>
+                <div class="subscribe__field">
+                    <input type="email" class="subscribe__email" name="user_email" placeholder="Email">
+                    <button type="submit" class="subscribe__btn">
+                        <svg role="img">
+                            <use xlink:href="./img/svg/sprite.svg#arr-right-footer"></use>
+                        </svg>
+                    </button>
+                </div>
+            </form>
+            <div class="footer__copyright">&copy; 2018. CbD health.</div>
+        </div>
+    </footer>
+
+    <script src="./js/vue.js"></script>
+    <script src="./js/app.js"></script>
+    <script src="./js/jquery-3.6.0.min.js"></script>
+    <script src="./js/slick.min.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+
+</html>

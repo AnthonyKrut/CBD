@@ -1,0 +1,10 @@
+@function adaptive_fz($init_fz, $min_fz) {
+    $delta: ($init_fz - $min_fz) / 1px;
+    $adaptive_fz: calc(#{$min_fz} + #{$delta} * ((100vw - 320px) / (1920 - 320)));
+    @return $adaptive_fz;
+}
+
+@function adapt_header-hght($init_logo-fz, $min_logo-fz, $logo-lhgt) {
+    $ratio: $logo-lhgt / 1em;
+    @return calc(#{$ratio} * #{adaptive_fz($init_logo-fz, $min_logo-fz)})
+}

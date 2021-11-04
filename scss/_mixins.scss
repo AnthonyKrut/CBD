@@ -1,0 +1,35 @@
+@mixin dash($height, $width, $color) {
+    position: absolute;
+    content: '';
+    display: inline-block;
+    height: $height;
+    width: $width;
+    background: $color;
+}
+
+@mixin aside_panel($bottom, $fz, $lsp, $color) {
+    position: absolute;
+    left: 3vw;
+    bottom: $bottom;
+    transform-origin: left top;
+    transform: rotate(-90deg);
+    font-size: $fz;
+    letter-spacing: $lsp;
+    color: $color;
+    text-transform: uppercase;
+}   
+
+@mixin section_title {
+    font-size: adaptive_fz(30px, 12px);
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    color: $title_color;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+@mixin slider_fix {
+    overflow: hidden; 
+    width: 0;   
+    min-width: 100%; 
+}
